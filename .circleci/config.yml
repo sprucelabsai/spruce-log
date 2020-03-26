@@ -35,6 +35,8 @@ workflows:
           #       - dev
           #       - master
       - do_release:
+          requires:
+            - test
           context: public_package_publish
           filters:
             branches:
