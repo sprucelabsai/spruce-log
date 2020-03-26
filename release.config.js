@@ -11,6 +11,4 @@ const config = spruceSemanticRelease({
 	]
 })
 
-console.log({config})
-
 module.exports = config
