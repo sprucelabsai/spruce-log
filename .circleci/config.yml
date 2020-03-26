@@ -43,17 +43,20 @@ workflows:
   do_build:
     jobs:
       - test:
+          context: public_package_publish
           filters:
             branches:
               ignore:
                 - dev
                 - master
       - dev_release:
+          context: public_package_publish
           filters:
             branches:
               only:
                 - dev
       - prod_release:
+          context: public_package_publish
           filters:
             branches:
               only:
