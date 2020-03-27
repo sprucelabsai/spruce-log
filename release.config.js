@@ -3,7 +3,7 @@ const spruceSemanticRelease = require('@sprucelabs/semantic-release')
 const config = spruceSemanticRelease({
 	npmPublish: true,
 	branches: [
-		'dev',
+		{ name: 'dev', channel: 'beta' },
 		{ name: 'canary', prerelease: true },
 		{ name: 'prerelease/*', prerelease: true }
 	]
