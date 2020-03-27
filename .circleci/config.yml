@@ -28,11 +28,11 @@ jobs:
       - image: circleci/node:12
     steps:
       - run:
-        name: Authenticate with registry
-        command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
       - run:
-        name: Tag latest
-        command: npm dist-tag add $(node -p "require('./package.json').name")@$(npm v . dist-tags.beta) latest
+          name: Tag latest
+          command: npm dist-tag add $(node -p "require('./package.json').name")@$(npm v . dist-tags.beta) latest
 workflows:
   version: 2
   do_build:
