@@ -48,6 +48,22 @@ export enum LogLevel {
 	SuperInfo = 'superInfo'
 }
 
+// TODO: Use SpruceError here?
+/** Converts a string to a LogLevel. Throws 'INVALID_LOG_LEVEL' if there is no match */
+export function stringToLogLevel(level: string): LogLevel {
+	switch (level) {
+		case LogLevel.Trace: return LogLevel.Trace
+		case LogLevel.Debug: return LogLevel.Debug
+		case LogLevel.Info: return LogLevel.Info
+		case LogLevel.Warn: return LogLevel.Warn
+		case LogLevel.Error: return LogLevel.Error
+		case LogLevel.Crit: return LogLevel.Crit
+		case LogLevel.Fatal: return LogLevel.Fatal
+		case LogLevel.SuperInfo: return LogLevel.SuperInfo
+		default: throw new Error('INVALID_LOG_LEVEL')
+	}
+}
+
 export enum TerminalColors {
 	Reset = '\x1b[0m',
 	Bright = '\x1b[1m',
@@ -515,3 +531,5 @@ export class Log {
 		return [sec - shift, nsec + shift * 1e9]
 	}
 }
+
+export default Log
