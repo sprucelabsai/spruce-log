@@ -4,8 +4,7 @@ const config = spruceSemanticRelease({
 	npmPublish: true,
 	branches: [
 		'dev',
-		{ name: 'alpha', prerelease: true },
-		{ name: 'qa', prerelease: true },
+		{ name: 'canary', prerelease: true },
 		{ name: 'prerelease/*', prerelease: true }
 	]
 })
