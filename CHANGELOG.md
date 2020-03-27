@@ -1,3 +1,5 @@
+## [10.0.9](https://github.com/sprucelabsai/spruce-log/compare/v10.0.8...v10.0.9) (2020-03-27)
+
 ## [10.0.9-prerelease-release-config.1](https://github.com/sprucelabsai/spruce-log/compare/v10.0.8...v10.0.9-prerelease-release-config.1) (2020-03-27)
 
 ## [10.0.8](https://github.com/sprucelabsai/spruce-log/compare/v10.0.7...v10.0.8) (2020-03-27)
