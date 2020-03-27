@@ -1,4 +1,4 @@
-const spruceSemanticRelease = require('./build/index').default
+const spruceSemanticRelease = require('@sprucelabs/semantic-release').default
 
 const config = spruceSemanticRelease({
 	npmPublish: true,
