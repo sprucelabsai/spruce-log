@@ -1,7 +1,8 @@
 import { assert } from 'chai'
 import Base from './Base'
 import faker from 'faker'
-import { Log, LogLevel } from '../src/Log'
+import { Log } from '../src/Log'
+import { LogLevel } from '../src/logLevel'
 
 class LoggingTests extends Base {
 	public setup() {

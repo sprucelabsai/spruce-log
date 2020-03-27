@@ -1,6 +1,9 @@
 /* eslint-disable prefer-rest-params */
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable @typescript-eslint/no-namespace */
+import { TerminalColors } from './lib/terminal'
+import { LogLevel } from './logLevel'
+
 declare global {
 	const __webpack_require__: any | undefined
 
@@ -14,81 +17,6 @@ declare global {
 
 const CLIENT =
 	typeof window !== 'undefined' || typeof __webpack_require__ === 'function'
-
-/**
- * Setting a log level causes all logs of that level and higher to be output. The ones below it are ignored / dropped.
- *
- * The log levels in order from lowest to highest:
- * - Trace
- * - Debug
- * - Log
- * - Info
- * - Warn
- * - Error
- * - Crit
- * - Fatal
- * - SuperInfo
- */
-export enum LogLevel {
-	/** Trace level logs the go beyond just normal debug messages. A silly log level. */
-	Trace = 'trace',
-	/** Debug messages used during development. */
-	Debug = 'debug',
-	/** Informational messages */
-	Info = 'info',
-	/** Something bad might have happened and it should be invesigated, but we can continue. */
-	Warn = 'warn',
-	/** Something bad happened, but we can continue or recover. */
-	Error = 'error',
-	/** Something critical happend that likely had unintended or fatal consequences */
-	Crit = 'crit',
-	/** Something happened and we must immediately stop */
-	Fatal = 'fatal',
-	/** Really important information that is ALWAYS logged */
-	SuperInfo = 'superInfo'
-}
-
-// TODO: Use SpruceError here?
-/** Converts a string to a LogLevel. Throws 'INVALID_LOG_LEVEL' if there is no match */
-export function stringToLogLevel(level: string): LogLevel {
-	switch (level) {
-		case LogLevel.Trace: return LogLevel.Trace
-		case LogLevel.Debug: return LogLevel.Debug
-		case LogLevel.Info: return LogLevel.Info
-		case LogLevel.Warn: return LogLevel.Warn
-		case LogLevel.Error: return LogLevel.Error
-		case LogLevel.Crit: return LogLevel.Crit
-		case LogLevel.Fatal: return LogLevel.Fatal
-		case LogLevel.SuperInfo: return LogLevel.SuperInfo
-		default: throw new Error('INVALID_LOG_LEVEL')
-	}
-}
-
-export enum TerminalColors {
-	Reset = '\x1b[0m',
-	Bright = '\x1b[1m',
-	Dim = '\x1b[2m',
-	Underscore = '\x1b[4m',
-	Blink = '\x1b[5m',
-	Reverse = '\x1b[7m',
-	Hidden = '\x1b[8m',
-	FontBlack = '\x1b[30m',
-	FontRed = '\x1b[31m',
-	FontGreen = '\x1b[32m',
-	FontYellow = '\x1b[33m',
-	FontBlue = '\x1b[34m',
-	FontMagenta = '\x1b[35m',
-	FontCyan = '\x1b[36m',
-	FontWhite = '\x1b[37m',
-	BackgroundBlack = '\x1b[40m',
-	BackgroundRed = '\x1b[41m',
-	BackgroundGreen = '\x1b[42m',
-	BackgroundYellow = '\x1b[43m',
-	BackgroundBlue = '\x1b[44m',
-	BackgroundMagenta = '\x1b[45m',
-	BackgroundCyan = '\x1b[46m',
-	BackgroundWhite = '\x1b[47m'
-}
 
 interface ILogOptions {
 	/** The log level */
@@ -109,6 +37,7 @@ interface ICaller {
 	relativeFilePath?: string
 }
 
+/** Corresponds to the signature of console.log */
 export type LogAdapter = (message?: any, ...optionalParams: any[]) => void
 
 export class Log {
