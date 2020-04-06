@@ -503,6 +503,9 @@ export class Log {
 			const level = this.getDefaultLevelForNamespace(this.namespace, debugStr)
 			if (level) {
 				this.setLevel(level)
+			} else {
+				// Default log level when namespace is set
+				this.setLevel(LogLevel.Warn)
 			}
 		}
 	}
