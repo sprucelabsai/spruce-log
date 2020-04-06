@@ -210,6 +210,7 @@ export class Log {
 
 		if (typeof options.namespace === 'string' && options.namespace.length > 0) {
 			this.namespace = options.namespace
+			this.setDefaultOptions()
 		}
 	}
 
@@ -498,8 +499,6 @@ export class Log {
 
 	private setDefaultOptions() {
 		const debugStr = this.getDebugString()
-
-		// Check if our current namespace
 		if (this.namespace) {
 			const level = this.getDefaultLevelForNamespace(this.namespace, debugStr)
 			if (level) {
@@ -534,7 +533,7 @@ export class Log {
 
 				if (
 					parsedNamespace.length > 0 &&
-					(parsedNamespace === '*' || namespaceToCheck.indexOf(namespace) > -1)
+					(parsedNamespace === '*' || namespace.indexOf(namespaceToCheck) > -1)
 				) {
 					return level
 				}
