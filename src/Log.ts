@@ -29,7 +29,22 @@ interface ILogOptions {
 	customAdapter?: LogAdapter
 	/** Whether to show file path / line numbers for all logs instead of just debug and trace. Enabling this will incur a slight performance penalty.*/
 	showLineNumbersForAll?: boolean
-	/** If this is a module, set the namespace so logs can be selectively turned on. For example @sprucelabs/skill-booking. The default namespace is read from the CWD package.json */
+	/**
+	 * If this is a module, set the namespace so logs can be selectively turned on.
+	 *
+	 * For example, if the module is named @sprucelabs/foo
+	 *
+	 * You can turn on debugging by setting the environment variable:
+	 * DEBUG=@sprucelabs/foo
+	 * or with a wildcard
+	 * DEBUG=@sprucelabs/*
+	 *
+	 * You can also specify the level:
+	 * DEBUG=@sprucelabs/foo~trace,@sprucelabs/bar~crit
+	 *
+	 * By default, when a namespace is set, the level is set to "warn"
+	 *
+	 * */
 	namespace?: string
 }
 
