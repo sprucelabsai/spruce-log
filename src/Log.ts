@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 import { TerminalColors } from './lib/terminal'
 import { LogLevel } from './logLevel'
+import StackUtils from './lib/StackUtils'
 
 declare global {
 	const __webpack_require__: any | undefined
@@ -67,6 +68,7 @@ export class Log {
 	private customAdapter?: LogAdapter
 	private consoleAdapter!: LogAdapter
 	private namespace?: string
+	private stackUtils: StackUtils
 
 	private levels = {
 		[LogLevel.Trace]: {
@@ -120,6 +122,9 @@ export class Log {
 	}
 
 	public constructor(options?: ILogOptions) {
+		this.stackUtils = new StackUtils({
+			cwd: CLIENT ? '' : process.cwd()
+		})
 		this.setConsoleAdapter()
 		this.setDefaultOptions()
 		this.setOptions(options)
@@ -358,6 +363,12 @@ export class Log {
 	private anyToString(thing: any, addIndentation?: boolean): string {
 		const thingType = typeof thing
 
+		if (thing instanceof Error) {
+			const cleanStack = this.stackUtils.clean(thing.stack)
+
+			return `Error: ${thing.message}\n\n${cleanStack}`
+		}
+
 		switch (thingType) {
 			case 'undefined':
 				return 'undefined'
@@ -481,7 +492,7 @@ export class Log {
 		if (value instanceof Error) {
 			const error: Record<string, any> = {}
 
-			Object.getOwnPropertyNames(value).forEach(function(key) {
+			Object.getOwnPropertyNames(value).forEach(key => {
 				if (key === 'stack') {
 					error[key] = value.stack && value.stack.split('\n')
 				} else {
