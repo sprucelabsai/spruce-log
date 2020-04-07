@@ -1,3 +1,10 @@
+# [10.1.0](https://github.com/sprucelabsai/spruce-log/compare/v10.0.11...v10.1.0) (2020-04-07)
+
+
+### Features
+
+* ability to set a namespace and control namespaces and levels via DEBUG env var ([1a54fe9](https://github.com/sprucelabsai/spruce-log/commit/1a54fe9))
+
 ## [10.0.11](https://github.com/sprucelabsai/spruce-log/compare/v10.0.10...v10.0.11) (2020-03-27)
 
 ## [10.0.10](https://github.com/sprucelabsai/spruce-log/compare/v10.0.9...v10.0.10) (2020-03-27)
