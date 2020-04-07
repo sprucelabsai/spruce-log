@@ -29,6 +29,23 @@ interface ILogOptions {
 	customAdapter?: LogAdapter
 	/** Whether to show file path / line numbers for all logs instead of just debug and trace. Enabling this will incur a slight performance penalty.*/
 	showLineNumbersForAll?: boolean
+	/**
+	 * If this is a module, set the namespace so logs can be selectively turned on.
+	 *
+	 * For example, if the module is named @sprucelabs/foo
+	 *
+	 * You can turn on debugging by setting the environment variable:
+	 * DEBUG=@sprucelabs/foo
+	 * or with a wildcard
+	 * DEBUG=@sprucelabs/*
+	 *
+	 * You can also specify the level:
+	 * DEBUG=@sprucelabs/foo~trace,@sprucelabs/bar~crit
+	 *
+	 * By default, when a namespace is set, the level is set to "warn"
+	 *
+	 * */
+	namespace?: string
 }
 
 interface ICaller {
@@ -49,6 +66,7 @@ export class Log {
 	private level: LogLevel = LogLevel.Info
 	private customAdapter?: LogAdapter
 	private consoleAdapter!: LogAdapter
+	private namespace?: string
 
 	private levels = {
 		[LogLevel.Trace]: {
@@ -102,8 +120,9 @@ export class Log {
 	}
 
 	public constructor(options?: ILogOptions) {
-		this.setOptions(options)
 		this.setConsoleAdapter()
+		this.setDefaultOptions()
+		this.setOptions(options)
 	}
 
 	/** Trace level logs the go beyond just normal debug messages. A silly log level. */
@@ -179,8 +198,10 @@ export class Log {
 	public setOptions(options?: ILogOptions) {
 		if (!options) {
 			// Nothing to set
+			this.debugLog('setOptions() called without any options')
 			return
 		}
+		this.debugLog('Setting options', { options })
 
 		if (typeof options.asJSON === 'boolean') {
 			this.asJSON = options.asJSON
@@ -200,6 +221,11 @@ export class Log {
 
 		if (typeof options.showLineNumbersForAll === 'boolean') {
 			this.showLineNumbersForAll = options.showLineNumbersForAll
+		}
+
+		if (typeof options.namespace === 'string' && options.namespace.length > 0) {
+			this.namespace = options.namespace
+			this.setDefaultOptions()
 		}
 	}
 
@@ -245,11 +271,38 @@ export class Log {
 		}
 	}
 
-	private handleLog(options: { level: LogLevel; args: any[] }) {
-		const { level, args } = options
+	private getLevelFromString(level: string): LogLevel {
+		switch (level) {
+			case LogLevel.Trace:
+			case LogLevel.Debug:
+			case LogLevel.Info:
+			case LogLevel.Warn:
+			case LogLevel.Error:
+			case LogLevel.Crit:
+			case LogLevel.Fatal:
+			case LogLevel.SuperInfo:
+				return level
+			default:
+				return LogLevel.Debug
+		}
+	}
+
+	private handleLog(options: {
+		/** The log level to log at */
+		level: LogLevel
+		/** Anything you want to log */
+		args: any[]
+		/** Force log ignoring this.level  */
+		force?: boolean
+		/** Override the current namespace. Setting this will take precedent over this.namespace */
+		namespace?: string
+	}) {
+		const { level, args, force } = options
+		const namespace = options.namespace ?? this.namespace
+
 		if (
-			this.levels[level] &&
-			this.levels[level].i >= this.levels[this.level].i
+			force ||
+			(this.levels[level] && this.levels[level].i >= this.levels[this.level].i)
 		) {
 			const now = this.getDatetimeString()
 			let caller: ICaller | undefined
@@ -264,6 +317,7 @@ export class Log {
 			if (this.asJSON) {
 				const jsonThing = `${JSON.stringify(
 					{
+						namespace,
 						timestamp: now,
 						level,
 						message: args,
@@ -277,7 +331,9 @@ export class Log {
 				const callerStr = caller?.relativeFilePath
 					? ` | ${caller.relativeFilePath}`
 					: ''
-				const rawAboutStr = `(${level.toUpperCase()} | ${now}${callerStr}): `
+
+				const namespaceStr = namespace ? `  [${namespace}] ` : ''
+				const rawAboutStr = `${namespaceStr}(${level.toUpperCase()} | ${now}${callerStr}): `
 
 				if (args.length === 1 && typeof args[0] === 'string') {
 					const str = CLIENT
@@ -290,7 +346,8 @@ export class Log {
 				} else if (Array.isArray(args)) {
 					this.writeLog(rawAboutStr)
 					args.forEach((arg: any) => {
-						const str = this.anyToString(arg)
+						const addIndentation = typeof namespace !== 'undefined'
+						const str = this.anyToString(arg, addIndentation)
 						this.writeLog(this.colorize({ str, level }))
 					})
 				}
@@ -298,14 +355,19 @@ export class Log {
 		}
 	}
 
-	private anyToString(thing: any): string {
+	private anyToString(thing: any, addIndentation?: boolean): string {
 		const thingType = typeof thing
 
 		switch (thingType) {
 			case 'undefined':
 				return 'undefined'
-			case 'string':
-				return thing
+			case 'string': {
+				let thingStr = thing
+				if (addIndentation) {
+					thingStr = `  ${thingStr}`
+				}
+				return thingStr
+			}
 			case 'number':
 			case 'bigint':
 			case 'boolean':
@@ -313,8 +375,18 @@ export class Log {
 			case 'symbol':
 			case 'object':
 			case 'function':
-			default:
-				return JSON.stringify(thing, this.replaceErrors, this.objectSpaceWidth)
+			default: {
+				let thingStr = JSON.stringify(
+					thing,
+					this.replaceErrors,
+					this.objectSpaceWidth
+				)
+				if (addIndentation) {
+					thingStr = thingStr.replace(/\n/g, '\n  ')
+					thingStr = `  ${thingStr}`
+				}
+				return thingStr
+			}
 		}
 	}
 
@@ -424,23 +496,77 @@ export class Log {
 		return value
 	}
 
-	private debugLog(msg: string) {
+	/** Logs a debug message about @sprucelabs/log itself */
+	private debugLog(...args: any) {
 		const namespace = '@sprucelabs/log'
-		const adapter = this.getAdapter()
-		const fullMsg = `${namespace} | ${msg}`
+		const debugStr = this.getDebugString()
+		const level = this.getDefaultLevelForNamespace(namespace, debugStr)
 
+		if (level && this.levels[level].i <= this.levels[LogLevel.Debug].i) {
+			this.handleLog({
+				level: LogLevel.Debug,
+				force: true,
+				namespace,
+				args
+			})
+		}
+	}
+
+	private setDefaultOptions() {
+		const debugStr = this.getDebugString()
+		if (this.namespace) {
+			const level = this.getDefaultLevelForNamespace(this.namespace, debugStr)
+			if (level) {
+				this.setLevel(level)
+			} else {
+				// Default log level when namespace is set
+				this.setLevel(LogLevel.Warn)
+			}
+		}
+	}
+
+	private getDebugString() {
+		let debugStr = ''
 		if (CLIENT && typeof localStorage !== 'undefined') {
 			// eslint-disable-next-line no-undef
 			const lsDebug = localStorage.getItem('debug')
-			if (lsDebug && lsDebug.indexOf(namespace)) {
-				adapter(fullMsg)
+			if (lsDebug) {
+				debugStr = lsDebug
 			}
-		} else if (
-			typeof process !== 'undefined' &&
-			process.env.DEBUG &&
-			process.env.DEBUG.indexOf(namespace) > -1
-		) {
-			adapter(fullMsg)
+		} else if (typeof process !== 'undefined' && process.env.DEBUG) {
+			debugStr = process.env.DEBUG
+		}
+
+		return debugStr
+	}
+
+	private getDefaultLevelForNamespace(namespace: string, debugStr: string) {
+		if (namespace) {
+			// Set the namespace based on the package.json
+			const debugNamespaces = debugStr.split(',')
+			for (let i = 0; i < debugNamespaces.length; i += 1) {
+				const ns = debugNamespaces[i]
+				const { namespace: parsedNamespace, level } = this.parseNamespace(ns)
+				const namespaceToCheck = parsedNamespace.replace(/\*/g, '')
+
+				if (
+					parsedNamespace.length > 0 &&
+					(parsedNamespace === '*' || namespace.indexOf(namespaceToCheck) > -1)
+				) {
+					return level
+				}
+			}
+		}
+
+		return
+	}
+
+	private parseNamespace(ns: string) {
+		const [namespace, level] = ns.split('~')
+
+		return {
+			namespace,
+			level: this.getLevelFromString(level)
 		}
 	}
 
