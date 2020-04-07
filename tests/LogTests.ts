@@ -3,11 +3,13 @@ import Base from './Base'
 import faker from 'faker'
 import log from '../index'
 import { LogLevel } from '../src/logLevel'
+import jsonStringify from '../src/lib/jsonStringify'
 
 class LoggingTests extends Base {
 	public setup() {
 		it('Uses colors', () => this.useColors())
 		it('Can have colors turned off', () => this.noColors())
+		it('Can stringify circular references', () => this.stringifyCircular())
 	}
 
 	public async before() {
@@ -50,6 +52,26 @@ class LoggingTests extends Base {
 
 		log.debug(message)
 		assert.isTrue(wasLogged)
+	}
+
+	public async stringifyCircular() {
+		const a: Record<string, any> = {
+			b: null
+		}
+		const b = { a }
+		a.b = b
+
+		let didThrow = false
+		try {
+			JSON.stringify(a)
+		} catch (e) {
+			didThrow = true
+		}
+
+		assert.isTrue(didThrow)
+
+		jsonStringify(a)
+		assert.isTrue(true)
 	}
 }
 

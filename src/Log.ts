@@ -4,6 +4,7 @@
 import { TerminalColors } from './lib/terminal'
 import { LogLevel } from './logLevel'
 import StackUtils from './lib/StackUtils'
+import jsonStringify from './lib/jsonStringify'
 
 declare global {
 	const __webpack_require__: any | undefined
@@ -320,7 +321,7 @@ export class Log {
 			}
 
 			if (this.asJSON) {
-				const jsonThing = `${JSON.stringify(
+				const jsonThing = `${jsonStringify(
 					{
 						namespace,
 						timestamp: now,
@@ -387,7 +388,7 @@ export class Log {
 			case 'object':
 			case 'function':
 			default: {
-				let thingStr = JSON.stringify(
+				let thingStr = jsonStringify(
 					thing,
 					this.replaceErrors,
 					this.objectSpaceWidth
