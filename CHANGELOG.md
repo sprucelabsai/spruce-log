@@ -1,3 +1,10 @@
+# [10.2.0](https://github.com/sprucelabsai/spruce-log/compare/v10.1.0...v10.2.0) (2020-04-07)
+
+
+### Features
+
+* integrate stack-utils library for better error stack formatting ([6679442](https://github.com/sprucelabsai/spruce-log/commit/6679442))
+
 # [10.1.0](https://github.com/sprucelabsai/spruce-log/compare/v10.0.11...v10.1.0) (2020-04-07)
 
 
