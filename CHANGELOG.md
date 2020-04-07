@@ -1,3 +1,10 @@
+## [10.2.1](https://github.com/sprucelabsai/spruce-log/compare/v10.2.0...v10.2.1) (2020-04-07)
+
+
+### Bug Fixes
+
+* handle circular references ([33e22b8](https://github.com/sprucelabsai/spruce-log/commit/33e22b8))
+
 # [10.2.0](https://github.com/sprucelabsai/spruce-log/compare/v10.1.0...v10.2.0) (2020-04-07)
 
 
