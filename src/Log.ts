@@ -17,8 +17,8 @@ declare global {
 	}
 }
 
-const CLIENT =
-	typeof window !== 'undefined' || typeof __webpack_require__ === 'function'
+// TODO better client detection
+const CLIENT = false ///typeof window !== 'undefined' || typeof __webpack_require__ === 'function'
 
 interface ILogOptions {
 	/** The log level */

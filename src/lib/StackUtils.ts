@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-const CLIENT =
-	typeof window !== 'undefined' || typeof __webpack_require__ === 'function'
+// TODO better client detection
+const CLIENT = false
 
 const matchOperatorsRegex = /[|\\{}()[\]^$+*?.-]/g
 
@@ -13,13 +13,7 @@ function escapeStringRegexp(str: string) {
 	return str.replace(matchOperatorsRegex, '\\$&')
 }
 
-const strNatives: string[] = CLIENT
-	? []
-	: require('module').builtinModules.concat([
-			'bootstrap_node',
-			'node',
-			'internal/bootstrap/node'
-	  ])
+const strNatives: string[] = []
 
 const natives: RegExp[] = CLIENT
 	? []
