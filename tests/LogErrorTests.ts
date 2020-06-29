@@ -1,6 +1,6 @@
-import Base from './Base'
 import log from '../index'
 import { LogLevel } from '../src/logLevel'
+import Base from './Base'
 
 class LogLevelTests extends Base {
 	public setup() {

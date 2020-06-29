@@ -1,9 +1,9 @@
 import { assert } from 'chai'
-import Base from './Base'
 import faker from 'faker'
 import log from '../index'
-import { LogLevel } from '../src/logLevel'
 import jsonStringify from '../src/lib/jsonStringify'
+import { LogLevel } from '../src/logLevel'
+import Base from './Base'
 
 class LoggingTests extends Base {
 	public setup() {
