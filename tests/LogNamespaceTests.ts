@@ -1,8 +1,8 @@
 import { assert } from 'chai'
-import Base from './Base'
 import faker from 'faker'
 import log from '../index'
 import { LogLevel } from '../src/logLevel'
+import Base from './Base'
 
 class LogLevelTests extends Base {
 	private namespace!: string

@@ -1,10 +1,10 @@
 /* eslint-disable prefer-rest-params */
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable @typescript-eslint/no-namespace */
+import jsonStringify from './lib/jsonStringify'
+import StackUtils from './lib/StackUtils'
 import { TerminalColors } from './lib/terminal'
 import { LogLevel } from './logLevel'
-import StackUtils from './lib/StackUtils'
-import jsonStringify from './lib/jsonStringify'
 
 declare global {
 	const __webpack_require__: any | undefined
