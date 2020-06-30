@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="110px" preserveAspectRatio="none" style="width:371px;height:110px;" version="1.1" viewBox="0 0 371 110" width="371px" zoomAndPan="magnify"><defs/><g><ellipse cx="93.7487" cy="25.242" fill="#F8F8F8" rx="27.7487" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="35" x="76.2487" y="28.9842">index</text><ellipse cx="228.4117" cy="82.242" fill="#F8F8F8" rx="53.9117" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="72" x="192.4117" y="85.9842">jsonStringify</text><!--MD5=[48944f3db3cc1efa4060b54a1b2ad969]
+entity _Log--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="41" x="133" y="8"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="21" x="143" y="30.0059">Log</text><!--MD5=[887b7e1074bc2d7bf5e8092a9f91049d]
+entity _logLevel--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="67" x="6" y="65"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="47" x="16" y="87.0059">logLevel</text><!--MD5=[3cd5b8099a8f7920631cfb52f53d4127]
+entity _StackUtils--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="77" x="85" y="65"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="57" x="95" y="87.0059">StackUtils</text><!--MD5=[15fb902fd264a02645c8040e4e741f10]
+entity _terminal--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="66" x="294.5" y="65"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="46" x="304.5" y="87.0059">terminal</text><!--MD5=[35c380dec06e02bc8edd740f973600eb]
+link <b>index</b> to _Log--><path d="M121.156,25 C123.336,25 125.515,25 127.694,25 " fill="none" id="&lt;b&gt;index&lt;/b&gt;-&gt;_Log" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="132.78,25,123.78,21,127.78,25,123.78,29,132.78,25" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[6dcdeed9633727c0ef9ffc1f67c82a61]
+link <b>index</b> to _logLevel--><path d="M82.5723,37.1301 C75.8982,43.9277 67.1641,52.8236 59.3067,60.8265 " fill="none" id="&lt;b&gt;index&lt;/b&gt;-&gt;_logLevel" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="55.5328,64.6703,64.6924,61.0506,59.0358,61.1025,58.9839,55.4459,55.5328,64.6703" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[31ff9cd5a614e2cbed599004d4c395d3]
+link <b>index</b> to _StackUtils--><path d="M99.8622,37.6641 C103.4516,44.2446 108.042,52.6602 112.221,60.3218 " fill="none" id="&lt;b&gt;index&lt;/b&gt;-&gt;_StackUtils" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="114.757,64.9716,113.958,55.1552,112.3623,60.5823,106.9352,58.9867,114.757,64.9716" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[209af96f779ee44032ab2da350b93bca]
+link _Log to jsonStringify--><path d="M174.392,41.3206 C185.106,49.1775 198.086,58.6966 208.648,66.4416 " fill="none" id="_Log-&gt;jsonStringify" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="212.715,69.4241,207.8231,60.876,208.6831,66.4671,203.092,67.3271,212.715,69.4241" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[ab6c30f6936985aa4aa5e1da2d775b45]
+link _Log to _logLevel--><path d="M132.998,38.4747 C130.823,39.7001 128.629,40.8968 126.5,42 C110.918,50.0763 93.3189,58.1528 78.0467,64.844 " fill="none" id="_Log-&gt;_logLevel" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="73.3865,66.8745,83.2351,66.9462,77.9702,64.8771,80.0393,59.6123,73.3865,66.8745" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[748fdb4be79d5a8289324d3a5f82ea50]
+link _Log to _StackUtils--><path d="M144.661,42.2043 C141.576,47.8604 138.07,54.2881 134.812,60.262 " fill="none" id="_Log-&gt;_StackUtils" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="132.379,64.7214,140.2,58.7354,134.7731,60.3318,133.1766,54.9049,132.379,64.7214" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[da5ee1f71b2fe2f2618564962e7ada01]
+link _Log to _terminal--><path d="M174.302,31.2613 C201.005,38.1849 248.645,51.1134 288.5,65 C288.863,65.1264 289.227,65.2544 289.593,65.3838 " fill="none" id="_Log-&gt;_terminal" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="294.402,67.1368,287.3167,60.2958,289.7045,65.424,284.5763,67.8118,294.402,67.1368" style="stroke: #000000; stroke-width: 0.5;"/><script type="text/plantuml"><![CDATA[MD5=[e4d47f93ff95e978fa7445e779ef7850]
+@startuml
+
+scale max 1920 width
+top to bottom direction
+
+skinparam nodesep 12
+skinparam ranksep 23
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam roundCorner 6
+skinparam dpi 150
+skinparam arrowColor black
+skinparam arrowThickness 0.5
+skinparam packageTitleAlignment left
+
+skinparam usecase {
+  borderThickness 0.5
+}
+
+skinparam rectangle {
+  borderThickness 0.5
+}
+
+skinparam component {
+  borderThickness 1
+}
+
+
+(<b>index</b>)
+(jsonStringify)
+rectangle "Log" as _Log
+rectangle "logLevel" as _logLevel
+rectangle "StackUtils" as _StackUtils
+rectangle "terminal" as _terminal
+
+
+(<b>index</b>) -[thickness=1]> _Log
+(<b>index</b>) -[thickness=1]> _logLevel
+(<b>index</b>) --[thickness=1]> _StackUtils
+_Log --> (jsonStringify)
+_Log --> _logLevel
+_Log --> _StackUtils
+_Log --> _terminal
+
+@enduml
+
+
+' View and edit on https://arkit.pro
+]]></script></g></svg>
