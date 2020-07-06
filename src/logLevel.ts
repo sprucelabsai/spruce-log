@@ -28,7 +28,7 @@ export enum LogLevel {
 	/** Something happened and we must immediately stop */
 	Fatal = 'fatal',
 	/** Really important information that is ALWAYS logged */
-	SuperInfo = 'superInfo'
+	SuperInfo = 'superInfo',
 }
 
 // TODO: Use SpruceError here?

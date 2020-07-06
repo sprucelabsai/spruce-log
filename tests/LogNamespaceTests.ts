@@ -16,7 +16,7 @@ class LogLevelTests extends Base {
 			error: 3,
 			crit: 2,
 			fatal: 1,
-			superInfo: 0
+			superInfo: 0,
 		},
 		colors: {
 			trace: 'gray',
@@ -26,8 +26,8 @@ class LogLevelTests extends Base {
 			error: 'red',
 			crit: 'red',
 			fatal: 'red',
-			superInfo: 'cyan'
-		}
+			superInfo: 'cyan',
+		},
 	}
 
 	public setup() {
@@ -44,7 +44,7 @@ class LogLevelTests extends Base {
 		await super.before()
 		this.namespace = faker.name.firstName()
 		log.setOptions({
-			namespace: this.namespace
+			namespace: this.namespace,
 		})
 	}
 
@@ -53,7 +53,7 @@ class LogLevelTests extends Base {
 
 		const currentLogLevel = logLevel ? logLevel : LogLevel.Debug
 		log.setOptions({
-			level: currentLogLevel
+			level: currentLogLevel,
 		})
 
 		const shouldLog =
@@ -63,7 +63,7 @@ class LogLevelTests extends Base {
 		let wasLogged = false
 
 		log.setOptions({
-			customAdapter: logMessage => {
+			customAdapter: (logMessage) => {
 				wasLogged = true
 				if (!shouldLog) {
 					throw new Error(
@@ -74,12 +74,12 @@ class LogLevelTests extends Base {
 				assert.isTrue(levelRegexp.test(logMessage))
 				const messageRegexp = new RegExp(message, 'i')
 				assert.isTrue(messageRegexp.test(message))
-			}
+			},
 		})
 		console.log({
 			level,
 			logLevel,
-			shouldLog
+			shouldLog,
 		})
 		log[level](message)
 		assert.equal(wasLogged, shouldLog)
@@ -91,11 +91,11 @@ class LogLevelTests extends Base {
 		let hasNamespacePrefix = false
 
 		log.setOptions({
-			customAdapter: logMessage => {
+			customAdapter: (logMessage) => {
 				if (logMessage.indexOf(`[${this.namespace}]`) > -1) {
 					hasNamespacePrefix = true
 				}
-			}
+			},
 		})
 
 		log.fatal(message)

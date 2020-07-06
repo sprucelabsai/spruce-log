@@ -21,5 +21,5 @@ export enum TerminalColors {
 	BackgroundBlue = '\x1b[44m',
 	BackgroundMagenta = '\x1b[45m',
 	BackgroundCyan = '\x1b[46m',
-	BackgroundWhite = '\x1b[47m'
+	BackgroundWhite = '\x1b[47m',
 }
