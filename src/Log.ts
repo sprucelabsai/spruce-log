@@ -76,55 +76,55 @@ export class Log {
 			i: 0,
 			hex: '#404040',
 			bgHex: null,
-			terminalColor: TerminalColors.Dim
+			terminalColor: TerminalColors.Dim,
 		},
 		[LogLevel.Debug]: {
 			i: 1,
 			hex: '#009933',
 			bgHex: null,
-			terminalColor: TerminalColors.FontGreen
+			terminalColor: TerminalColors.FontGreen,
 		},
 		[LogLevel.Info]: {
 			i: 2,
 			hex: '#0033cc',
 			bgHex: null,
-			terminalColor: TerminalColors.FontCyan
+			terminalColor: TerminalColors.FontCyan,
 		},
 		[LogLevel.Warn]: {
 			i: 3,
 			hex: '#ff6600',
 			bgHex: null,
-			terminalColor: TerminalColors.FontRed
+			terminalColor: TerminalColors.FontRed,
 		},
 		[LogLevel.Error]: {
 			i: 4,
 			hex: '#cc3300',
 			bgHex: null,
-			terminalColor: TerminalColors.FontRed
+			terminalColor: TerminalColors.FontRed,
 		},
 		[LogLevel.Crit]: {
 			i: 5,
 			hex: '#cc3300',
 			bgHex: null,
-			terminalColor: TerminalColors.FontRed
+			terminalColor: TerminalColors.FontRed,
 		},
 		[LogLevel.Fatal]: {
 			i: 6,
 			hex: '#cc3300',
 			bgHex: null,
-			terminalColor: TerminalColors.FontRed
+			terminalColor: TerminalColors.FontRed,
 		},
 		[LogLevel.SuperInfo]: {
 			i: 7,
 			hex: '#0033cc',
 			bgHex: null,
-			terminalColor: TerminalColors.FontCyan
-		}
+			terminalColor: TerminalColors.FontCyan,
+		},
 	}
 
 	public constructor(options?: ILogOptions) {
 		this.stackUtils = new StackUtils({
-			cwd: CLIENT ? '' : process.cwd()
+			cwd: CLIENT ? '' : process.cwd(),
 		})
 		this.setConsoleAdapter()
 		this.setDefaultOptions()
@@ -135,56 +135,56 @@ export class Log {
 	public trace(...args: any) {
 		return this.handleLog({
 			level: LogLevel.Trace,
-			args
+			args,
 		})
 	}
 	/** Debug messages used during development. */
 	public debug(...args: any) {
 		return this.handleLog({
 			level: LogLevel.Debug,
-			args
+			args,
 		})
 	}
 	/** Informational messages */
 	public info(...args: any) {
 		return this.handleLog({
 			level: LogLevel.Info,
-			args
+			args,
 		})
 	}
 	/** Something bad might have happened and it should be invesigated, but we can continue. */
 	public warn(...args: any) {
 		return this.handleLog({
 			level: LogLevel.Warn,
-			args
+			args,
 		})
 	}
 	/** Something bad happened, but we can continue or recover. */
 	public error(...args: any) {
 		return this.handleLog({
 			level: LogLevel.Error,
-			args
+			args,
 		})
 	}
 	/** Something critical happend that likely had unintended or fatal consequences */
 	public crit(...args: any) {
 		return this.handleLog({
 			level: LogLevel.Crit,
-			args
+			args,
 		})
 	}
 	/** Something happened and we must immediately stop */
 	public fatal(...args: any) {
 		return this.handleLog({
 			level: LogLevel.Fatal,
-			args
+			args,
 		})
 	}
 	/** Really important information that is ALWAYS logged */
 	public superInfo(...args: any) {
 		return this.handleLog({
 			level: LogLevel.SuperInfo,
-			args
+			args,
 		})
 	}
 
@@ -238,7 +238,7 @@ export class Log {
 	private getCaller(): ICaller {
 		const stack = new Error().stack
 		const caller: ICaller = {
-			stack
+			stack,
 		}
 		if (stack) {
 			const lines = stack.split('\n')
@@ -327,7 +327,7 @@ export class Log {
 						timestamp: now,
 						level,
 						message: args,
-						caller
+						caller,
 					},
 					this.replaceErrors
 				)}`
@@ -346,7 +346,7 @@ export class Log {
 						? this.colorize({ str: `${rawAboutStr} ${args[0]}`, level })
 						: `${rawAboutStr} ${this.colorize({
 								str: args[0],
-								level
+								level,
 						  })}`
 					this.writeLog(str)
 				} else if (Array.isArray(args)) {
@@ -493,7 +493,7 @@ export class Log {
 		if (value instanceof Error) {
 			const error: Record<string, any> = {}
 
-			Object.getOwnPropertyNames(value).forEach(key => {
+			Object.getOwnPropertyNames(value).forEach((key) => {
 				if (key === 'stack') {
 					error[key] = value.stack && value.stack.split('\n')
 				} else {
@@ -519,7 +519,7 @@ export class Log {
 				level: LogLevel.Debug,
 				force: true,
 				namespace,
-				args
+				args,
 			})
 		}
 	}
@@ -578,7 +578,7 @@ export class Log {
 
 		return {
 			namespace,
-			level: this.getLevelFromString(level)
+			level: this.getLevelFromString(level),
 		}
 	}
 

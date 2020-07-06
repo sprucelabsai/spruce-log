@@ -14,7 +14,7 @@ class LogLevelTests extends Base {
 			error: 3,
 			crit: 2,
 			fatal: 1,
-			superInfo: 0
+			superInfo: 0,
 		},
 		colors: {
 			trace: 'gray',
@@ -24,8 +24,8 @@ class LogLevelTests extends Base {
 			error: 'red',
 			crit: 'red',
 			fatal: 'red',
-			superInfo: 'cyan'
-		}
+			superInfo: 'cyan',
+		},
 	}
 
 	public setup() {
@@ -170,7 +170,7 @@ class LogLevelTests extends Base {
 		await super.before()
 		log.setOptions({
 			level: LogLevel.Trace,
-			useColors: false
+			useColors: false,
 		})
 	}
 
@@ -182,11 +182,11 @@ class LogLevelTests extends Base {
 
 		log.setOptions({
 			level: logLevel,
-			useColors: false
+			useColors: false,
 		})
 
 		log.setOptions({
-			customAdapter: logMessage => {
+			customAdapter: (logMessage) => {
 				wasLogged = true
 				if (!shouldLog) {
 					throw new Error(
@@ -197,7 +197,7 @@ class LogLevelTests extends Base {
 				assert.isTrue(levelRegexp.test(logMessage))
 				const messageRegexp = new RegExp(message, 'i')
 				assert.isTrue(messageRegexp.test(message))
-			}
+			},
 		})
 
 		log[level](message)

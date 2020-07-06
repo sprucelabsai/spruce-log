@@ -47,7 +47,7 @@ function ensureProperties(obj: any) {
 			return aResult
 		}
 
-		const result: any = Object.keys(obj).reduce(function(result: any, prop) {
+		const result: any = Object.keys(obj).reduce(function (result: any, prop) {
 			// prevent faulty defined getter properties
 			result[prop] = visit(safeGetValueFromPropertyOnObject(obj, prop))
 			return result
@@ -59,7 +59,7 @@ function ensureProperties(obj: any) {
 	return visit(obj)
 }
 
-export default function(
+export default function (
 	value: any,
 	replacer?: (this: any, key: string, value: any) => any,
 	space?: string | number

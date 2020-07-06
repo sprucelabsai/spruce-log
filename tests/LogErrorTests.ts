@@ -9,7 +9,7 @@ class LogLevelTests extends Base {
 
 	public async logErrors() {
 		log.setOptions({
-			level: LogLevel.Trace
+			level: LogLevel.Trace,
 		})
 
 		log.debug(new Error('MISSING_PARAMETERS'))
