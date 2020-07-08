@@ -13,7 +13,7 @@ export default {
 		file: 'build/umd/log.js',
 		format: 'umd',
 		name: 'spruceLog',
-		sourceMap: true
+		sourcemap: true
 	},
 	external: ['fs', 'http', 'https', 'child_process'],
 	plugins: [
