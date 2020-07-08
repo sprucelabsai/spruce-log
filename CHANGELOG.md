@@ -1,3 +1,10 @@
+## [10.2.9](https://github.com/sprucelabsai/spruce-log/compare/v10.2.8...v10.2.9) (2020-07-08)
+
+
+### Build System
+
+* **deps:** bump npm-registry-fetch from 4.0.4 to 4.0.5 ([079b7a5](https://github.com/sprucelabsai/spruce-log/commit/079b7a5))
+
 ## [10.2.8](https://github.com/sprucelabsai/spruce-log/compare/v10.2.7...v10.2.8) (2020-07-06)
 
 ## [10.2.7](https://github.com/sprucelabsai/spruce-log/compare/v10.2.6...v10.2.7) (2020-07-03)
