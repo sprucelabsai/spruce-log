@@ -6,7 +6,7 @@
   "files": [
     "build"
   ],
-  "version": "10.2.10",
+  "version": "10.2.11",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "description": "Logger built for the Spruce Experience Platform",
