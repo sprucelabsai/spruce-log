@@ -1,5 +1,5 @@
 /* eslint-disable prefer-rest-params */
-/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/no-namespace */
 import jsonStringify from './lib/jsonStringify'
 import StackUtils from './lib/StackUtils'
