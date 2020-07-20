@@ -35,7 +35,7 @@
     "arkit": "arkit -f index.ts -o docs/images/arkit.svg",
     "arkit.png": "arkit -f index.ts -o docs/images/arkit.png",
     "upgrade.base": "yarn upgrade --latest && rm yarn.lock | true && yarn | true && yarn lint.fix | true",
-    "upgrade": "yarn upgrade.base && yarn lint && yarn test && yarn build"
+    "up": "yarn upgrade.base && yarn lint && yarn build && yarn test"
   },
   "dependencies": {},
   "devDependencies": {
@@ -52,7 +52,7 @@
     "chokidar-cli": "^2.1.0",
     "concurrently": "^5.1.0",
     "eslint": "^7.5.0",
-    "eslint-config-spruce": "^10.5.9",
+    "eslint-config-spruce": "^10.6.0",
     "faker": "^4.1.0",
     "mocha": "^8.0.1",
     "prettier": "^2.0.5",
