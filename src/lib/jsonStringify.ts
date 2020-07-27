@@ -59,10 +59,12 @@ function ensureProperties(obj: any) {
 	return visit(obj)
 }
 
-export default function (
+const jsonStringify = function (
 	value: any,
 	replacer?: (this: any, key: string, value: any) => any,
 	space?: string | number
 ): string {
 	return JSON.stringify(ensureProperties(value), replacer, space)
 }
+
+export default jsonStringify
