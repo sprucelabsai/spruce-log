@@ -1,3 +1,10 @@
+## [10.2.49](https://github.com/sprucelabsai/spruce-log/compare/v10.2.48...v10.2.49) (2020-07-27)
+
+
+### Bug Fixes
+
+* address issue that new eslint-plugin-react introduced ([251d04d](https://github.com/sprucelabsai/spruce-log/commit/251d04d))
+
 ## [10.2.48](https://github.com/sprucelabsai/spruce-log/compare/v10.2.47...v10.2.48) (2020-07-24)
 
 ## [10.2.47](https://github.com/sprucelabsai/spruce-log/compare/v10.2.46...v10.2.47) (2020-07-24)
