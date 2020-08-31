@@ -78,6 +78,7 @@ const re = new RegExp(
 
 const methodRe = /^(.*?) \[as (.*?)\]$/
 
+// eslint-disable-next-line no-undef
 type CallSite = NodeJS.CallSite | false
 
 interface IParsedLine {
