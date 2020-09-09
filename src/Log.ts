@@ -6,6 +6,7 @@ import StackUtils from './lib/StackUtils'
 import { TerminalColors } from './lib/terminal'
 import { LogLevel } from './logLevel'
 
+// eslint-disable-next-line
 declare global {
 	const __webpack_require__: any | undefined
 
