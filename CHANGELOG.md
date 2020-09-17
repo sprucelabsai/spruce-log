@@ -1,3 +1,5 @@
+## [10.2.223](https://github.com/sprucelabsai/spruce-log/compare/v10.2.222...v10.2.223) (2020-09-17)
+
 ## [10.2.222](https://github.com/sprucelabsai/spruce-log/compare/v10.2.221...v10.2.222) (2020-09-16)
 
 ## [10.2.221](https://github.com/sprucelabsai/spruce-log/compare/v10.2.220...v10.2.221) (2020-09-16)
