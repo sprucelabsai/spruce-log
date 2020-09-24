@@ -46,7 +46,7 @@
     "@rollup/plugin-typescript": "^6.0.0",
     "@sprucelabs/semantic-release": "^4.0.5",
     "@types/chai": "^4.2.12",
-    "@types/faker": "^5.1.0",
+    "@types/faker": "^5.1.1",
     "@types/mocha": "^8.0.3",
     "arkit": "^1.6.4",
     "chai": "^4.2.0",
