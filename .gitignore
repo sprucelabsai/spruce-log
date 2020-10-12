@@ -13,3 +13,5 @@ yarn-error.log*
 
 build/
 mercury.min.*
+
+yarn.lock
