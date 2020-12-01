@@ -8,8 +8,10 @@ import { LogLevel } from './logLevel'
 
 // eslint-disable-next-line
 declare global {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const __webpack_require__: any | undefined
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	namespace NodeJS {
 		// eslint-disable-next-line
 		interface Global {

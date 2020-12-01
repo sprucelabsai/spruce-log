@@ -21,7 +21,7 @@ export default class Base {
 
 	protected async wait(ms: number) {
 		return new Promise((resolve) => {
-			setTimeout(() => resolve(), ms)
+			setTimeout(() => resolve(undefined), ms)
 		})
 	}
 }
