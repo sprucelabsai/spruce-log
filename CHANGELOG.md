@@ -1,3 +1,10 @@
+## [10.2.298](https://github.com/sprucelabsai/spruce-log/compare/v10.2.297...v10.2.298) (2021-03-04)
+
+
+### Bug Fixes
+
+* invalid config files ([83f0c6d](https://github.com/sprucelabsai/spruce-log/commit/83f0c6d))
+
 ## [10.2.297](https://github.com/sprucelabsai/spruce-log/compare/v10.2.296...v10.2.297) (2021-02-20)
 
 ## [10.2.296](https://github.com/sprucelabsai/spruce-log/compare/v10.2.295...v10.2.296) (2020-12-31)
