@@ -1,3 +1,10 @@
+## [10.2.300](https://github.com/sprucelabsai/spruce-log/compare/v10.2.299...v10.2.300) (2021-03-04)
+
+
+### Bug Fixes
+
+* build for dist when disting ([e666854](https://github.com/sprucelabsai/spruce-log/commit/e666854))
+
 ## [10.2.299](https://github.com/sprucelabsai/spruce-log/compare/v10.2.298...v10.2.299) (2021-03-04)
 
 
