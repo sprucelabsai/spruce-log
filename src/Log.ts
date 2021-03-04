@@ -1,6 +1,7 @@
 /* eslint-disable prefer-rest-params */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/no-namespace */
+import { performance } from 'perf_hooks'
 import jsonStringify from './lib/jsonStringify'
 import StackUtils from './lib/StackUtils'
 import { TerminalColors } from './lib/terminal'
@@ -483,7 +484,7 @@ export class Log {
 		let adapter = () => {}
 		if (typeof console !== 'undefined') {
 			if (CLIENT) {
-				adapter = console.log.bind(window.console)
+				// adapter = console.log.bind(window.console)
 			} else {
 				adapter = console.log
 			}
@@ -542,13 +543,14 @@ export class Log {
 
 	private getDebugString() {
 		let debugStr = ''
-		if (CLIENT && typeof localStorage !== 'undefined') {
-			// eslint-disable-next-line no-undef
-			const lsDebug = localStorage.getItem('debug')
-			if (lsDebug) {
-				debugStr = lsDebug
-			}
-		} else if (typeof process !== 'undefined' && process.env.DEBUG) {
+		// if (CLIENT && typeof localStorage !== 'undefined') {
+		// 	// eslint-disable-next-line no-undef
+		// 	const lsDebug = localStorage.getItem('debug')
+		// 	if (lsDebug) {
+		// 		debugStr = lsDebug
+		// 	}
+		// } else
+		if (typeof process !== 'undefined' && process.env.DEBUG) {
 			debugStr = process.env.DEBUG
 		}
 
@@ -592,7 +594,7 @@ export class Log {
 
 		const calcTime = time || [0, 0]
 
-		const now = // eslint-disable-next-line no-undef
+		const now =
 			typeof performance === 'object' ? performance.now() : Date.now() * 1e-3
 		const sec = Math.floor(now) - calcTime[0]
 		const nsec = Math.floor((now % 1) * 1e9) - calcTime[1]
