@@ -1,7 +1,6 @@
 /* eslint-disable prefer-rest-params */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/no-namespace */
-import { performance } from 'perf_hooks'
 import jsonStringify from './lib/jsonStringify'
 import StackUtils from './lib/StackUtils'
 import { TerminalColors } from './lib/terminal'
@@ -594,8 +593,7 @@ export class Log {
 
 		const calcTime = time || [0, 0]
 
-		const now =
-			typeof performance === 'object' ? performance.now() : Date.now() * 1e-3
+		const now = Date.now() * 1e-3
 		const sec = Math.floor(now) - calcTime[0]
 		const nsec = Math.floor((now % 1) * 1e9) - calcTime[1]
 		const shift = nsec < 0 ? 0 : 1
