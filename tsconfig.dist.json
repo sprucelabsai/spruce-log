@@ -4,8 +4,8 @@
         "target": "es6",
         "lib": [
             "es2015",
-            "dom",
-            "es2019"
+            "es2019",
+            "dom"
         ],
         "esModuleInterop": true,
         "moduleResolution": "node",
@@ -25,8 +25,8 @@
 		}
     },
     "include": [
-        "./src/*.ts",
-        "./src/**/*.ts"
+        "./*.ts",
+        "./**/*.ts"
     ],
     "exclude": [
         "**/node_modules/*",
