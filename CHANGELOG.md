@@ -1,3 +1,10 @@
+## [10.2.299](https://github.com/sprucelabsai/spruce-log/compare/v10.2.298...v10.2.299) (2021-03-04)
+
+
+### Bug Fixes
+
+* remove performance ([e99bd79](https://github.com/sprucelabsai/spruce-log/commit/e99bd79))
+
 ## [10.2.298](https://github.com/sprucelabsai/spruce-log/compare/v10.2.297...v10.2.298) (2021-03-04)
 
 

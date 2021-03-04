@@ -6,7 +6,7 @@
   "files": [
     "build"
   ],
-  "version": "10.2.298",
+  "version": "10.2.299",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "exports": {
